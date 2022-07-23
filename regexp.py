@@ -5,17 +5,24 @@ import csv
 with open("phonebook_raw.csv", encoding='utf-8') as f:
   rows = csv.reader(f, delimiter=",")
   contacts_list = list(rows)
-# pprint(type(contacts_list))
 
 for contact in contacts_list:
   # print(contact)
-  for text in contact:
-    # print(type(text))
-    # print(text)
-    pattern = re.compile("([А-Я]{1}[а-я]+)")
-    result = pattern.findall(text)
-    if len(result)>1:
-      print(result)
+  # print('vvvvvvvvvvvvvvvvvvvvvvvvvvv')
+  pattern = re.compile("\s+")
+  result = pattern.findall(contact[0])
+  if len(result) > 0:
+    new_result = contact[0].split(' ')
+    contact[0] = new_result[0]
+    contact[1] = new_result[1]
+    if len(new_result) > 2:
+      contact[2] = new_result[2]
+    # print(contact)
+    # print("--------------------------")
+pprint(contacts_list)
+
+
+
 
 # # TODO 1: выполните пункты 1-3 ДЗ
 # # ваш код
@@ -26,3 +33,8 @@ for contact in contacts_list:
 #   datawriter = csv.writer(f, delimiter=',')
 #   # Вместо contacts_list подставьте свой список
 #   datawriter.writerows(contacts_list)
+
+
+
+
+# ([А-Я]{1}[а-я]+)(\s|,)([А-Я]{1}[а-я]+)(\s|,)([А-Я]{1}[а-я]+)
