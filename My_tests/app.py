@@ -50,6 +50,7 @@ def remove_doc_from_shelf(doc_number):
             break
 
 
+
 def add_new_shelf(shelf_number=''):
     if not shelf_number:
         shelf_number = input('Введите номер полки - ')
